@@ -1,737 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EduConnect - Student Portal</title>
-
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EduConnect — School Portal</title>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #f0f5ff;
-    color: #2c3e50;
-}
-
-.header {
-    background: #2c3e50;
-    color: white;
-    padding: 22px;
-    text-align: center;
-}
-
-.header h1 {
-    margin-bottom: 8px;
-}
-
-.header p {
-    margin: 5px;
-}
-
-.nav {
-    background: #3498db;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.nav button {
-    background: transparent;
-    color: white;
-    border: none;
-    padding: 15px 18px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.nav button:hover,
-.nav button.active {
-    background: #2980b9;
-}
-
-.content {
-    max-width: 1100px;
-    margin: 25px auto;
-    padding: 0 15px;
-}
-
-.tab-section {
-    display: none;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.tab-section.active {
-    display: block;
-}
-
-h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
-}
-
-h3 {
-    margin-bottom: 10px;
-}
-
-.item {
-    background: #f8f9fa;
-    margin: 12px 0;
-    padding: 17px;
-    border-left: 4px solid #3498db;
-    border-radius: 5px;
-    line-height: 1.8;
-}
-
-.due {
-    color: #e74c3c;
-    font-weight: bold;
-}
-
-.grade {
-    color: #27ae60;
-    font-weight: bold;
-}
-
-.btn {
-    background: #27ae60;
-    color: white;
-    border: none;
-    padding: 9px 14px;
-    border-radius: 5px;
-    margin-top: 8px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background: #219653;
-}
-
-.btn-blue {
-    background: #3498db;
-}
-
-.btn-blue:hover {
-    background: #2980b9;
-}
-
-.btn-red {
-    background: #e74c3c;
-}
-
-.status {
-    display: inline-block;
-    padding: 4px 9px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    background: #fff3cd;
-    color: #856404;
-    margin-top: 5px;
-}
-
-.status.completed {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status.submitted {
-    background: #d1ecf1;
-    color: #0c5460;
-}
-
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.stat-card {
-    background: #eaf4ff;
-    padding: 20px;
-    border-radius: 8px;
-    border-top: 4px solid #3498db;
-    text-align: center;
-}
-
-.stat-card h3 {
-    color: #3498db;
-    font-size: 27px;
-}
-
-.stat-card p {
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-.progress-container {
-    background: #ddd;
-    height: 12px;
-    border-radius: 10px;
-    margin: 10px 0;
-}
-
-.progress-bar {
-    background: #27ae60;
-    height: 12px;
-    width: 0%;
-    border-radius: 10px;
-    transition: width 0.3s;
-}
-
-.question {
-    padding: 15px;
-    background: #f8f9fa;
-    margin: 15px 0;
-    border-radius: 6px;
-}
-
-.question label {
-    display: block;
-    margin: 9px 0;
-    cursor: pointer;
-}
-
-input[type="radio"] {
-    margin-right: 7px;
-}
-
-input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-input[type="file"] {
-    margin-top: 10px;
-    max-width: 100%;
-}
-
-.result {
-    background: #eaf4ff;
-    padding: 15px;
-    border-radius: 6px;
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-.notice {
-    background: #fff8df;
-    border-left: 4px solid #f1c40f;
-    padding: 15px;
-    margin: 12px 0;
-    border-radius: 5px;
-}
-
-.footer {
-    background: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 18px;
-    margin-top: 30px;
-}
-
-@media(max-width:600px) {
-    .header {
-        padding: 18px 10px;
-    }
-
-    .header h1 {
-        font-size: 23px;
-    }
-
-    .nav button {
-        padding: 12px 10px;
-        font-size: 13px;
-    }
-
-    .tab-section {
-        padding: 17px;
-    }
-}
+*{box-sizing:border-box}body{margin:0;font:16px Arial,sans-serif;background:#f2f6fb;color:#243447;line-height:1.5}.header,.footer{background:#20364b;color:white;text-align:center;padding:20px}.shell{max-width:1100px;margin:22px auto;padding:0 14px}.panel,.tab{background:white;border-radius:12px;padding:22px;box-shadow:0 3px 14px #18324a12}.panel{max-width:680px;margin:auto}.hidden{display:none!important}h2{color:#20364b;border-bottom:2px solid #d6e9fa;padding-bottom:9px}button,input,select,textarea{font:inherit}input,select,textarea{width:100%;padding:10px;border:1px solid #bdcbd9;border-radius:7px;margin:4px 0 10px}textarea{min-height:85px}.btn{border:0;border-radius:7px;padding:10px 14px;background:#239b66;color:white;font-weight:bold;margin:5px 4px 5px 0;cursor:pointer}.blue{background:#287fbd}.red{background:#d94b4b}.gray{background:#64748b}.roles,.row,.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.role{border:2px solid #dbe5ef;border-radius:10px;padding:18px;background:#f9fbfd;cursor:pointer}.role.selected{border-color:#287fbd;background:#eaf5ff}.steps{display:flex;gap:7px;margin:18px 0}.step{height:7px;flex:1;border-radius:8px;background:#dbe5ef}.step.on{background:#239b66}.muted,small{color:#64748b}.nav{display:flex;flex-wrap:wrap;gap:5px;background:#287fbd;padding:8px;border-radius:9px;margin:12px 0}.nav button{border:0;border-radius:6px;background:transparent;color:white;padding:10px;cursor:pointer}.nav button.active,.nav button:hover{background:#1e6395}.tab{display:none}.tab.active{display:block}.item,.notice,.formbox{padding:15px;margin:12px 0;border-radius:7px;background:#f8fafc;border-left:4px solid #287fbd}.notice{background:#fff8df;border-color:#eab308}.formbox{border:1px solid #dbe5ef}.stats{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin:15px 0}.stat{padding:16px;background:#eef6ff;border-top:4px solid #287fbd;border-radius:8px;text-align:center}.stat strong{display:block;font-size:26px;color:#287fbd}.pill{display:inline-block;background:#e7f2ff;color:#245c8a;padding:3px 9px;border-radius:18px;font-size:12px}.question{padding:12px;border:1px solid #dbe5ef;border-radius:8px;margin:10px 0}.question label{display:block;font-weight:normal}.question input{width:auto}.status{display:inline-block;padding:3px 8px;border-radius:5px;background:#fff0c2;color:#805d00;font-size:12px}.done{background:#d8f5e5;color:#17633d}@media(max-width:600px){.roles,.row{grid-template-columns:1fr}.panel,.tab{padding:16px}.nav button{font-size:13px;padding:8px}}
 </style>
 </head>
-
 <body>
-
-<!-- HEADER -->
-<header class="header">
-    <h1>📘 EDUCONNECT</h1>
-    <p>Integrated Innovation and Hospitality College</p>
-    <p>La Forteza Campus</p>
-    <p><small>Student: Ezekiel Xavierseth Basio | Grade 12 - IT</small></p>
-</header>
-
-<!-- NAVIGATION -->
-<nav class="nav">
-    <button class="active" onclick="openTab('dashboard', this)">🏠 Dashboard</button>
-    <button onclick="openTab('assign', this)">📝 Assignments</button>
-    <button onclick="openTab('records', this)">📂 Records</button>
-    <button onclick="openTab('activities', this)">📋 Activities</button>
-    <button onclick="openTab('practice', this)">✏️ Practice Tasks</button>
-    <button onclick="openTab('quizzes', this)">🧠 Quizzes</button>
-    <button onclick="openTab('announcements', this)">📢 Announcements</button>
-</nav>
-
-<main class="content">
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="tab-section active">
-    <h2>🏠 Student Dashboard</h2>
-
-    <h3>Welcome, Ezekiel!</h3>
-    <p>Welcome to your EduConnect student portal. Access your school activities, academic records, and learning resources in one place.</p>
-
-    <br>
-
-    <div class="dashboard">
-        <div class="stat-card">
-            <h3 id="assignmentCount">3</h3>
-            <p>Total Assignments</p>
-        </div>
-
-        <div class="stat-card">
-            <h3 id="submittedCount">0</h3>
-            <p>Submitted Assignments</p>
-        </div>
-
-        <div class="stat-card">
-            <h3 id="activityCount">3</h3>
-            <p>Activities</p>
-        </div>
-
-        <div class="stat-card">
-            <h3 id="averageGrade">91.6</h3>
-            <p>General Average</p>
-        </div>
-    </div>
-
-    <div class="item">
-        <h3>📊 Assignment Progress</h3>
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <p id="progressText">0% Completed</p>
-    </div>
-
-    <div class="notice">
-        <strong>📢 Reminder:</strong>
-        Always check your assignments and announcements for important school updates.
-    </div>
-
-    <div class="item">
-        <h3>Quick Access</h3>
-        <button class="btn btn-blue" onclick="openTab('assign')">View Assignments</button>
-        <button class="btn btn-blue" onclick="openTab('records')">View Grades</button>
-        <button class="btn btn-blue" onclick="openTab('quizzes')">Take Quiz</button>
-    </div>
+<header class="header"><h1>📘 EDUCONNECT</h1><p>Integrated Innovation and Hospitality College</p><p>La Forteza Campus · School Year 2026–2027</p></header>
+<main class="shell">
+<section id="onboard" class="panel">
+<h2>Welcome to EduConnect</h2><p class="muted">Step through onboarding to open your portal.</p>
+<div class="steps"><div id="s1" class="step on"></div><div id="s2" class="step"></div><div id="s3" class="step"></div></div><p id="stepText" class="muted">Step 1 of 3 — Choose your portal</p>
+<div id="rolePage"><h3>Who is using EduConnect?</h3><div class="roles">
+<button type="button" class="role" id="studentChoice"><strong>🎓 Student</strong><br><small>Lessons, tasks, quizzes, announcements</small></button>
+<button type="button" class="role" id="staffChoice"><strong>🧑‍🏫 Admin / Faculty</strong><br><small>Create and manage portal content</small></button></div>
+<button type="button" class="btn blue" id="continueBtn">Continue</button><p id="roleMsg" class="muted"></p></div>
+<form id="profileForm" class="hidden"><h3 id="profileHeading">Your profile</h3>
+<label>Full name</label><input id="name" required maxlength="100" placeholder="Type your name">
+<div id="studentInfo"><div class="row"><div><label>Grade</label><select id="grade"><option value="">Choose grade</option><option>Grade 11</option><option>Grade 12</option></select></div><div><label>Strand</label><select id="strand"><option value="">Choose strand</option><option>ABM</option><option>HUMSS</option><option>STEM</option><option>GAS</option><option>ICT</option><option>HE</option><option>Tourism</option><option>Other</option></select></div></div><label>Section</label><input id="section" placeholder="e.g. ICT - A" maxlength="50"></div>
+<div id="staffInfo" class="hidden"><label>Role</label><select id="staffRole"><option>Faculty / Teacher</option><option>Administrator</option></select><label>Department (optional)</label><input id="department" placeholder="e.g. ICT"></div>
+<button type="button" class="btn gray" id="backBtn">Back</button><button type="submit" class="btn">Finish onboarding</button><p id="formMsg" class="muted"></p></form>
+<div id="finishPage" class="hidden"><h3>You're ready!</h3><p id="summary"></p><button type="button" class="btn" id="openBtn">Open EduConnect</button></div>
 </section>
-
-<!-- ASSIGNMENTS -->
-<section id="assign" class="tab-section">
-    <h2>📝 Assignments & Requirements</h2>
-
-    <div class="item">
-        <h3>1. Research Paper</h3>
-        Subject: Research 1<br>
-        Topic: <em>EduConnect: A Web-Based School Portal</em><br>
-        Requirements: Final paper, abstract, references<br>
-        <span class="due">📅 Due: July 30, 2026 | 11:59 PM</span><br>
-        <span class="status" id="status1">Pending</span><br>
-
-        <input type="file" id="file1" accept=".pdf,.doc,.docx">
-        <br>
-        <button class="btn" onclick="submitAssignment(1)">Submit Output</button>
-    </div>
-
-    <div class="item">
-        <h3>2. Essay Writing</h3>
-        Subject: English<br>
-        Title: <em>Why Education Matters in Hospitality & Technology</em><br>
-        Length: 300–500 words<br>
-        <span class="due">📅 Due: August 2, 2026</span><br>
-        <span class="status" id="status2">Pending</span><br>
-
-        <input type="file" id="file2" accept=".pdf,.doc,.docx">
-        <br>
-        <button class="btn" onclick="submitAssignment(2)">Upload File</button>
-    </div>
-
-    <div class="item">
-        <h3>3. Coding Activity</h3>
-        Subject: Computer Programming<br>
-        Task: Create a simple HTML page with 5 elements<br>
-        <span class="due">📅 Due: July 28, 2026</span><br>
-        <span class="status" id="status3">Pending</span><br>
-
-        <input type="file" id="file3" accept=".html,.zip,.txt">
-        <br>
-        <button class="btn" onclick="submitAssignment(3)">Submit</button>
-    </div>
-</section>
-
-<!-- RECORDS -->
-<section id="records" class="tab-section">
-    <h2>📂 Academic Records</h2>
-
-    <div class="item">
-        <h3>📊 Grades – 1st Semester SY 2026–2027</h3>
-
-        <p>Research 1: <span class="grade">92</span></p>
-        <p>English for Academic Purposes: <span class="grade">90</span></p>
-        <p>Computer Programming: <span class="grade">93</span></p>
-        <p>Mathematics in the Modern World: <span class="grade">89</span></p>
-        <p>Science, Technology & Society: <span class="grade">91</span></p>
-        <p>Personal Development: <span class="grade">95</span></p>
-
-        <hr style="margin:15px 0">
-
-        <h3>General Average: <span class="grade">91.6</span></h3>
-        <p>Academic Standing: <strong class="grade">With Honors</strong></p>
-    </div>
-
-    <div class="item">
-        <h3>📅 Attendance Record</h3>
-        <p>Present: 45 days</p>
-        <p>Absent: 2 days</p>
-        <p>Late: 1 day</p>
-        <p>Attendance Rate: <strong class="grade">93.75%</strong></p>
-        <small>Sample academic records for demonstration.</small>
-    </div>
-
-    <div class="item">
-        <h3>👤 Student Information</h3>
-        <p>Student Name: Ezekiel Xavierseth Basio</p>
-        <p>Grade Level: Grade 12</p>
-        <p>Strand: ICT</p>
-        <p>School: IIHC La Forteza Campus</p>
-        <p>School Year: 2026–2027</p>
-    </div>
-</section>
-
-<!-- ACTIVITIES -->
-<section id="activities" class="tab-section">
-    <h2>📋 Learning Activities</h2>
-
-    <div class="item">
-        <h3>Activity 1: Research Development</h3>
-        Subject: Research 1<br>
-        Task: Complete the research background and statement of the problem.
-        <br><br>
-        <label>
-            <input type="checkbox" class="task-check" onchange="updateTasks()">
-            Mark as completed
-        </label>
-    </div>
-
-    <div class="item">
-        <h3>Activity 2: HTML Fundamentals</h3>
-        Subject: Computer Programming<br>
-        Task: Practice HTML headings, paragraphs, images, and links.
-        <br><br>
-        <label>
-            <input type="checkbox" class="task-check" onchange="updateTasks()">
-            Mark as completed
-        </label>
-    </div>
-
-    <div class="item">
-        <h3>Activity 3: Essay Writing</h3>
-        Subject: English<br>
-        Task: Write a short essay about the importance of technology in education.
-        <br><br>
-        <label>
-            <input type="checkbox" class="task-check" onchange="updateTasks()">
-            Mark as completed
-        </label>
-    </div>
-
-    <div class="result">
-        Activities Completed: <span id="taskProgress">0 / 3</span>
-    </div>
-</section>
-
-<!-- PRACTICE TASKS -->
-<section id="practice" class="tab-section">
-    <h2>✏️ Practice Tasks</h2>
-
-    <div class="item">
-        <h3>Practice 1: HTML Structure</h3>
-        Create a basic HTML document containing:
-        <ul>
-            <li>HTML heading</li>
-            <li>Paragraph</li>
-            <li>Image</li>
-            <li>Hyperlink</li>
-            <li>Button</li>
-        </ul>
-        <br>
-        <label>
-            <input type="checkbox" class="practice-check" onchange="updatePractice()">
-            Completed
-        </label>
-    </div>
-
-    <div class="item">
-        <h3>Practice 2: CSS Styling</h3>
-        Apply background colors, font styles, borders, and spacing to a webpage.
-        <br><br>
-        <label>
-            <input type="checkbox" class="practice-check" onchange="updatePractice()">
-            Completed
-        </label>
-    </div>
-
-    <div class="item">
-        <h3>Practice 3: JavaScript</h3>
-        Create a button that displays a message when clicked.
-        <br><br>
-        <label>
-            <input type="checkbox" class="practice-check" onchange="updatePractice()">
-            Completed
-        </label>
-    </div>
-
-    <div class="result">
-        Practice Tasks Completed: <span id="practiceProgress">0 / 3</span>
-    </div>
-</section>
-
-<!-- QUIZZES -->
-<section id="quizzes" class="tab-section">
-    <h2>🧠 ICT Knowledge Quiz</h2>
-
-    <p>Instructions: Select the correct answer for each question and click Submit Quiz to see your score.</p>
-
-    <form id="quizForm">
-
-        <div class="question">
-            <strong>1. What does HTML stand for?</strong>
-            <label><input type="radio" name="q1" value="a"> Hyper Text Markup Language</label>
-            <label><input type="radio" name="q1" value="b"> High Technology Modern Language</label>
-            <label><input type="radio" name="q1" value="c"> Hyper Transfer Machine Language</label>
-        </div>
-
-        <div class="question">
-            <strong>2. Which language is used to style webpages?</strong>
-            <label><input type="radio" name="q2" value="a"> Python</label>
-            <label><input type="radio" name="q2" value="b"> CSS</label>
-            <label><input type="radio" name="q2" value="c"> SQL</label>
-        </div>
-
-        <div class="question">
-            <strong>3. Which HTML tag creates a hyperlink?</strong>
-            <label><input type="radio" name="q3" value="a"> <p></label>
-            <label><input type="radio" name="q3" value="b"> <img></label>
-            <label><input type="radio" name="q3" value="c"> <a></label>
-        </div>
-
-        <div class="question">
-            <strong>4. Which language adds interactivity to a webpage?</strong>
-            <label><input type="radio" name="q4" value="a"> JavaScript</label>
-            <label><input type="radio" name="q4" value="b"> HTML only</label>
-            <label><input type="radio" name="q4" value="c"> CSS only</label>
-        </div>
-
-        <div class="question">
-            <strong>5. What does CSS stand for?</strong>
-            <label><input type="radio" name="q5" value="a"> Computer Style System</label>
-            <label><input type="radio" name="q5" value="b"> Cascading Style Sheets</label>
-            <label><input type="radio" name="q5" value="c"> Creative Software Setup</label>
-        </div>
-
-        <button type="submit" class="btn">Submit Quiz</button>
-        <button type="reset" class="btn btn-red" onclick="resetQuiz()">Reset Quiz</button>
-    </form>
-
-    <div id="quizResult" class="result" style="display:none"></div>
-</section>
-
-<!-- ANNOUNCEMENTS -->
-<section id="announcements" class="tab-section">
-    <h2>📢 School Announcements</h2>
-
-    <div class="notice">
-        <h3>📌 Academic Reminder</h3>
-        Students are encouraged to check their assignments and academic requirements regularly.
-        <br><small>Posted: October 1, 2026</small>
-    </div>
-
-    <div class="notice">
-        <h3>📌 Research Submission</h3>
-        Grade 12 students should prepare their research documents and follow the submission instructions provided by their research teacher.
-        <br><small>Posted: October 1, 2026</small>
-    </div>
-
-    <div class="notice">
-        <h3>📌 ICT Practice</h3>
-        Continue practicing HTML, CSS, and JavaScript to improve your web development skills.
-        <br><small>Posted: October 1, 2026</small>
-    </div>
-</section>
-
-</main>
-
-<footer class="footer">
-    <p>EduConnect Student Portal</p>
-    <p>Integrated Innovation and Hospitality College – La Forteza Campus</p>
-    <small>Educational Prototype | School Year 2026–2027</small>
-</footer>
-
+<section id="portal" class="hidden"><p><strong id="welcome"></strong> <span class="pill" id="roleBadge"></span><br><small id="profileLine"></small></p><button type="button" class="btn gray" id="switchBtn">Switch user</button><nav class="nav" id="nav"></nav><div id="view"></div></section>
+</main><footer class="footer">EduConnect · IIHC La Forteza Campus · Educational Prototype</footer>
 <script>
-
-// NAVIGATION
-function openTab(tabId, button) {
-    document.querySelectorAll(".tab-section").forEach(section => {
-        section.classList.remove("active");
-    });
-
-    document.querySelectorAll(".nav button").forEach(btn => {
-        btn.classList.remove("active");
-    });
-
-    document.getElementById(tabId).classList.add("active");
-
-    if (button) {
-        button.classList.add("active");
-    } else {
-        document.querySelectorAll(".nav button").forEach(btn => {
-            if (btn.getAttribute("onclick").includes("'" + tabId + "'")) {
-                btn.classList.add("active");
-            }
-        });
-    }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
+(function(){
+"use strict";
+var role="",user=null,tab="dashboard",storeKey="educonnect_fixed_v4";
+var D={
+assignments:[
+{id:"a1",title:"Research Paper",subject:"Research 1",description:"Prepare the final paper, abstract, and references for EduConnect: A Web-Based School Portal.",due:"October 30, 2026"},
+{id:"a2",title:"Essay Writing",subject:"English",description:"Write 300–500 words about why education matters in hospitality and technology.",due:"November 2, 2026"},
+{id:"a3",title:"Coding Activity",subject:"Computer Programming",description:"Create a simple HTML page with at least five HTML elements.",due:"October 28, 2026"}],
+activities:[
+{id:"ac1",title:"Research Development",subject:"Research 1",description:"Complete the research background and statement of the problem."},
+{id:"ac2",title:"HTML Fundamentals",subject:"ICT",description:"Practice headings, paragraphs, images, links, and buttons."},
+{id:"ac3",title:"Hospitality Service Reflection",subject:"HE / Tourism",description:"Write a reflection on courteous and professional customer service."}],
+practice:[
+{id:"p1",title:"HTML Structure",subject:"ICT",description:"Create a page with a heading, paragraph, image, hyperlink, and button."},
+{id:"p2",title:"Business Math",subject:"ABM",description:"Solve five practice problems involving percentages and simple interest."},
+{id:"p3",title:"Communication Practice",subject:"HUMSS",description:"Write a short formal email and identify its greeting, purpose, and closing."}],
+quizzes:[
+{id:"q1",title:"ICT Basics Quiz",subject:"ICT",description:"HTML, CSS, and JavaScript basics.",kind:"ict"},
+{id:"q2",title:"Business and Entrepreneurship Quiz",subject:"ABM",description:"Marketing, accounting, and business ideas.",kind:"abm"},
+{id:"q3",title:"Humanities and Research Quiz",subject:"HUMSS / GAS",description:"Research, communication, and society.",kind:"humss"},
+{id:"q4",title:"Science and Mathematics Quiz",subject:"STEM",description:"Scientific method, functions, and matter.",kind:"stem"},
+{id:"q5",title:"Hospitality and Tourism Quiz",subject:"HE / Tourism",description:"Food safety, customer service, and responsible tourism.",kind:"he"}],
+lessons:[
+["ICT","Introduction to HTML","Computer Programming","HTML structures webpage content. Common elements include headings, paragraphs, images, links, and buttons."],
+["ICT","CSS Basics","Computer Programming","CSS controls webpage presentation, including colors, typography, borders, layout, and spacing."],
+["ICT","JavaScript Fundamentals","Computer Programming","JavaScript adds interactivity. Variables store values, functions group instructions, and event listeners respond to user actions."],
+["ICT","Cybersecurity Basics","ICT","Use strong unique passwords, keep software updated, check links before opening them, and never share private account credentials."],
+["ABM","Marketing Mix: The 4 Ps","Business","Product, Price, Place, and Promotion are the four elements of the marketing mix."],
+["ABM","Basic Accounting Concepts","Accountancy","Accounting records and summarizes financial transactions. The basic equation is Assets = Liabilities + Owner's Equity."],
+["ABM","Entrepreneurship and Opportunity","Entrepreneurship","Entrepreneurs identify customer needs, research solutions, estimate costs, and test whether an idea is useful and sustainable."],
+["HUMSS","Understanding Social Institutions","Social Sciences","Family, education, government, and other institutions organize social life and help meet community needs."],
+["HUMSS","Effective Communication","Communication","Effective communication uses clear language, active listening, suitable tone, and awareness of audience and context."],
+["HUMSS","Media and Information Literacy","MIL","Check an author's credibility, evidence, date, purpose, and whether other reliable sources confirm a claim."],
+["STEM","Scientific Method","Science","Observe, ask a question, form a hypothesis, test it, analyze evidence, and draw a conclusion."],
+["STEM","Functions and Graphs","Mathematics","A function assigns each input exactly one output. Graphs help show relationships and patterns between variables."],
+["STEM","Matter and Its Properties","Science","Matter has mass and occupies space. Physical properties can be observed or measured without changing a substance into another substance."],
+["GAS","Planning a Community Project","General Academic Strand","Identify a community need, set goals, plan resources, assign responsibilities, and evaluate the results."],
+["GAS","Research: Variables and Evidence","Research","Research questions guide a study. Evidence should be relevant, accurately recorded, ethical, and interpreted carefully."],
+["GAS","Critical Thinking and Problem Solving","General Education","Define the problem, gather information, compare options, consider consequences, and explain the reasoning behind a decision."],
+["HE","Food Safety and Sanitation","Home Economics","Food safety includes handwashing, preventing cross-contamination, proper storage, and safe food handling."],
+["HE","Basic Cookery and Kitchen Safety","Cookery","Prepare a clean workspace, use equipment responsibly, separate raw and ready-to-eat food, and follow recipe steps carefully."],
+["HE","Workplace Professionalism","Practical Skills","Professional conduct includes punctuality, teamwork, clear communication, hygiene, responsibility, and respect."],
+["Tourism","Customer Service Fundamentals","Tourism and Hospitality","Welcome guests, listen carefully, provide accurate information, respond politely, and handle concerns professionally."],
+["Tourism","Responsible Tourism","Tourism","Responsible tourism reduces environmental harm, respects local culture, supports local livelihoods, and benefits communities."],
+["Tourism","Tour Itinerary Planning","Tourism","An itinerary organizes destinations, travel times, activities, costs, and contingency plans around a visitor's needs."]
+].map(function(a,i){return{id:"l"+(i+1),strand:a[0],title:a[1],subject:a[2],description:a[3]}}),
+announcements:[
+{id:"n1",title:"Academic Reminder",description:"Check your assignments, lessons, and school requirements regularly.",date:"October 1, 2026"},
+{id:"n2",title:"Research Submission",description:"Prepare your research documents and follow your teacher's submission instructions.",date:"October 1, 2026"},
+{id:"n3",title:"Practice and Review",description:"Use the lessons and practice tasks to prepare for quizzes.",date:"October 1, 2026"}],
+progress:{},scores:{}
+};
+var data=load();
+function clone(x){return JSON.parse(JSON.stringify(x))}
+function load(){try{var x=JSON.parse(localStorage.getItem(storeKey));if(x){var d=clone(D);["assignments","activities","practice","quizzes","lessons","announcements"].forEach(function(k){if(Array.isArray(x[k]))d[k]=x[k]});d.progress=x.progress||{};d.scores=x.scores||{};return d}}catch(e){}return clone(D)}
+function save(){try{localStorage.setItem(storeKey,JSON.stringify(data))}catch(e){}}
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function steps(n){for(var i=1;i<=3;i++)$("s"+i).classList.toggle("on",i<=n);$("stepText").textContent="Step "+n+" of 3 — "+["Choose your portal","Enter your profile","Confirm and open"][n-1]}
+$("studentChoice").addEventListener("click",function(){choose("student")});
+$("staffChoice").addEventListener("click",function(){choose("staff")});
+function choose(r){role=r;$("studentChoice").classList.toggle("selected",r==="student");$("staffChoice").classList.toggle("selected",r==="staff");$("roleMsg").textContent=(r==="student"?"Student":"Admin / Faculty")+" selected. Press Continue."}
+$("continueBtn").addEventListener("click",function(){if(!role){$("roleMsg").textContent="Please select Student or Admin / Faculty first.";return}$("rolePage").classList.add("hidden");$("profileForm").classList.remove("hidden");$("studentInfo").classList.toggle("hidden",role!=="student");$("staffInfo").classList.toggle("hidden",role!=="staff");$("grade").required=role==="student";$("strand").required=role==="student";$("section").required=role==="student";$("profileHeading").textContent=role==="student"?"Student information":"Admin / Faculty information";steps(2)});
+$("backBtn").addEventListener("click",function(){$("profileForm").classList.add("hidden");$("rolePage").classList.remove("hidden");steps(1)});
+$("profileForm").addEventListener("submit",function(e){e.preventDefault();var name=$("name").value.trim();if(!name){$("formMsg").textContent="Enter your name.";return}user={role:role,name:name,grade:$("grade").value,strand:$("strand").value,section:$("section").value.trim(),staffRole:$("staffRole").value,department:$("department").value.trim()};if(role==="student"&&(!user.grade||!user.strand||!user.section)){$("formMsg").textContent="Please choose your grade and strand, and enter your section.";return}$("profileForm").classList.add("hidden");$("finishPage").classList.remove("hidden");$("summary").textContent=role==="student"?name+" · "+user.grade+" · "+user.strand+" · Section "+user.section:name+" · "+user.staffRole+(user.department?" · "+user.department:"");steps(3)});
+$("openBtn").addEventListener("click",openPortal);
+function openPortal(){if(!user){alert("Please complete onboarding first.");return}$("onboard").classList.add("hidden");$("portal").classList.remove("hidden");$("welcome").textContent="Welcome, "+user.name+"!";$("roleBadge").textContent=user.role==="student"?"STUDENT":"ADMIN / FACULTY";$("profileLine").textContent=user.role==="student"?user.grade+" · "+user.strand+" · Section "+user.section:user.staffRole+(user.department?" · "+user.department:"");nav();render(user.role==="student"?"dashboard":"staff-home");window.scrollTo(0,0)}
+$("switchBtn").addEventListener("click",function(){user=null;role="";$("portal").classList.add("hidden");$("onboard").classList.remove("hidden");$("rolePage").classList.remove("hidden");$("profileForm").classList.add("hidden");$("finishPage").classList.add("hidden");$("profileForm").reset();$("studentChoice").classList.remove("selected");$("staffChoice").classList.remove("selected");steps(1)});
+var studentNav=[["dashboard","🏠 Dashboard"],["assignments","📝 Assignments"],["activities","📋 Activities"],["practice","✏️ Practice"],["quizzes","🧠 Quizzes"],["lessons","📚 Lessons"],["announcements","📢 Announcements"]];
+var staffNav=[["staff-home","🏠 Overview"],["manage-assignments","📝 Assignments"],["manage-activities","📋 Activities"],["manage-practice","✏️ Practice"],["manage-quizzes","🧠 Quizzes"],["manage-lessons","📚 Lessons"],["manage-announcements","📢 Announcements"]];
+function nav(){var arr=user.role==="student"?studentNav:staffNav;$("nav").innerHTML=arr.map(function(a){return'<button type="button" data-tab="'+a[0]+'">'+a[1]+'</button>'}).join("");$("nav").querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){render(b.getAttribute("data-tab"))})})}
+function pkey(item){return user.name.toLowerCase()+"|"+item.id}
+function done(item){return !!data.progress[pkey(item)]}
+function render(t){tab=t;$("nav").querySelectorAll("button").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-tab")===t)});var h="";
+if(user.role==="student"){
+ if(t==="dashboard"){var all=data.assignments.concat(data.activities,data.practice,data.quizzes),completed=all.filter(done).length,pct=all.length?Math.round(completed/all.length*100):0;h='<section class="tab active"><h2>Student Dashboard</h2><p>Access your school tasks, quizzes, strand-based lessons, and announcements.</p><div class="stats"><div class="stat"><strong>'+data.assignments.length+'</strong>Assignments</div><div class="stat"><strong>'+data.activities.length+'</strong>Activities</div><div class="stat"><strong>'+data.quizzes.length+'</strong>Quizzes</div><div class="stat"><strong>'+completed+'/'+all.length+'</strong>Tasks completed</div></div><div class="item"><strong>Overall progress: '+pct+'%</strong><div style="height:12px;background:#dbe5ef;border-radius:9px;margin-top:8px"><div style="height:12px;width:'+pct+'%;background:#239b66;border-radius:9px"></div></div></div><button class="btn blue" onclick="render(\'lessons\')">Explore lessons</button> <button class="btn blue" onclick="render(\'quizzes\')">Take a quiz</button></section>'}
+ else if(t==="lessons"){h='<section class="tab active"><h2>Lessons Library</h2><p>Choose a strand to explore lessons.</p><label>Filter lessons by strand</label><select id="lessonFilter"><option>All Strands</option><option>ABM</option><option>HUMSS</option><option>STEM</option><option>GAS</option><option>ICT</option><option>HE</option><option>Tourism</option><option>Other</option></select><div id="lessonResults"></div></section>'}
+ else if(t==="announcements"){h='<section class="tab active"><h2>School Announcements</h2>'+ (data.announcements.length?data.announcements.slice().reverse().map(function(x){return'<div class="notice"><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><small>Posted: '+esc(x.date)+'</small></div>'}).join(""):"<p>No announcements yet.</p>")+'</section>'}
+ else if(t==="quizzes"){h='<section class="tab active"><h2>Quizzes</h2><p>Open a quiz, answer all questions, and submit to see your score.</p>'+data.quizzes.map(quizCard).join("")+'</section>'}
+ else{var key=t;h='<section class="tab active"><h2>'+({assignments:"Assignments",activities:"Activities",practice:"Practice Tasks"}[t]||t)+'</h2>'+itemsForStudents(data[key],key)+'</section>'}
+}else{
+ if(t==="staff-home"){h='<section class="tab active"><h2>Admin / Faculty Overview</h2><p>Manage content shown in the student portal. Add or remove content using the tabs.</p><div class="stats">'+[["Assignments",data.assignments.length],["Activities",data.activities.length],["Practice tasks",data.practice.length],["Quizzes",data.quizzes.length],["Lessons",data.lessons.length],["Announcements",data.announcements.length]].map(function(x){return'<div class="stat"><strong>'+x[1]+'</strong>'+x[0]+'</div>'}).join("")+'</div><div class="notice">This demo saves changes in the current browser only.</div></section>'}
+ else{var key2=t.replace("manage-",""),title=({assignments:"Assignments",activities:"Activities",practice:"Practice Tasks",quizzes:"Quizzes",lessons:"Lessons",announcements:"Announcements"})[key2];h=manager(key2,title)}
 }
-
-// ASSIGNMENT SUBMISSION
-let submittedAssignments = new Set();
-
-function submitAssignment(number) {
-    const fileInput = document.getElementById("file" + number);
-    const status = document.getElementById("status" + number);
-
-    if (!fileInput.files || fileInput.files.length === 0) {
-        alert("Please select a file before submitting your assignment.");
-        fileInput.click();
-        return;
-    }
-
-    const file = fileInput.files[0];
-
-    status.textContent = "Submitted: " + file.name;
-    status.classList.add("submitted");
-
-    submittedAssignments.add(number);
-
-    updateDashboard();
-
-    alert("Your assignment has been marked as submitted in this demo!");
+$("view").innerHTML=h;
+if(user.role==="student"&&t==="lessons"){$("lessonFilter").value=user.strand;$("lessonFilter").addEventListener("change",lessonResults);lessonResults()}
 }
-
-// DASHBOARD PROGRESS
-function updateDashboard() {
-    const total = 3;
-    const submitted = submittedAssignments.size;
-    const percentage = Math.round((submitted / total) * 100);
-
-    document.getElementById("submittedCount").textContent = submitted;
-    document.getElementById("progressBar").style.width = percentage + "%";
-    document.getElementById("progressText").textContent = percentage + "% Completed";
-}
-
-// ACTIVITIES
-function updateTasks() {
-    const checks = document.querySelectorAll(".task-check");
-    let completed = 0;
-
-    checks.forEach(check => {
-        if (check.checked) completed++;
-    });
-
-    document.getElementById("taskProgress").textContent =
-        completed + " / " + checks.length;
-}
-
-// PRACTICE TASKS
-function updatePractice() {
-    const checks = document.querySelectorAll(".practice-check");
-    let completed = 0;
-
-    checks.forEach(check => {
-        if (check.checked) completed++;
-    });
-
-    document.getElementById("practiceProgress").textContent =
-        completed + " / " + checks.length;
-}
-
-// QUIZ SCORING
-document.getElementById("quizForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const answers = {
-        q1: "a",
-        q2: "b",
-        q3: "c",
-        q4: "a",
-        q5: "b"
-    };
-
-    let score = 0;
-    let unanswered = 0;
-
-    for (let question in answers) {
-        const selected = document.querySelector(
-            'input[name="' + question + '"]:checked'
-        );
-
-        if (!selected) {
-            unanswered++;
-        } else if (selected.value === answers[question]) {
-            score++;
-        }
-    }
-
-    if (unanswered > 0) {
-        alert("Please answer all questions before submitting.");
-        return;
-    }
-
-    const percentage = (score / 5) * 100;
-
-    const result = document.getElementById("quizResult");
-    result.style.display = "block";
-
-    result.innerHTML =
-        "Quiz Completed!<br>" +
-        "Your Score: " + score + " / 5<br>" +
-        "Percentage: " + percentage + "%<br>" +
-        (score >= 3 ? "Good job! Keep learning!" : "Keep practicing and try again!");
-
-    result.scrollIntoView({ behavior: "smooth", block: "nearest" });
-});
-
-// RESET QUIZ
-function resetQuiz() {
-    document.getElementById("quizResult").style.display = "none";
-}
-
-// INITIALIZE
-updateDashboard();
-updateTasks();
-updatePractice();
-
+function itemsForStudents(arr,key){if(!arr.length)return"<p>No content posted yet.</p>";return arr.map(function(x){var isdone=done(x);return'<div class="item"><h3>'+esc(x.title)+'</h3>'+(x.subject?'<p><strong>Subject:</strong> '+esc(x.subject)+'</p>':'')+'<p>'+esc(x.description)+'</p>'+(x.due?'<p><strong>Due:</strong> '+esc(x.due)+'</p>':'')+(key==="assignments"?'<label>Choose file (demo only)</label><input type="file">':'')+'<span class="status '+(isdone?"done":"")+'">'+(isdone?"Completed":"Not completed")+'</span><br><button class="btn '+(isdone?"gray":"")+'" onclick="toggleDone(\''+esc(x.id)+'\',\''+key+'\')">'+(isdone?"Mark incomplete":"Mark completed")+'</button></div>'}).join("")}
+function toggleDone(id,key){var x=data[key].find(function(a){return a.id===id});if(!x)return;var k=pkey(x);if(data.progress[k])delete data.progress[k];else data.progress[k]=true;save();render(tab)}
+function lessonResults(){var filter=$("lessonFilter").value;var list=data.lessons.filter(function(x){return filter==="All Strands"||x.strand===filter});$("lessonResults").innerHTML=list.length?list.map(function(x){return'<div class="item"><span class="pill">'+esc(x.strand||"General")+'</span><h3 style="margin-top:8px">'+esc(x.title)+'</h3><p><strong>Subject:</strong> '+esc(x.subject)+'</p><p>'+esc(x.description)+'</p></div>'}).join(""):"<p>No lessons for this strand yet. Your teacher can add lessons.</p>"}
+var bank={
+ict:[["What does HTML stand for?",["Hyper Text Markup Language","High Technology Modern Language","Hyper Transfer Machine Language"],0],["Which language styles webpages?",["Python","CSS","SQL"],1],["Which tag creates a hyperlink?",["<p>","<img>","<a>"],2],["Which language adds interactivity?",["JavaScript","HTML only","CSS only"],0],["What does CSS stand for?",["Computer Style System","Cascading Style Sheets","Creative Software Setup"],1]],
+abm:[["What are the 4 Ps of marketing?",["Product, Price, Place, Promotion","Plan, People, Profit, Paper","Price, Profit, Product, Payroll"],0],["What is an asset?",["A resource owned or controlled by a business","A business expense only","A customer complaint"],0],["Why prepare a budget?",["To plan expected income and expenses","To avoid keeping records","To guarantee every sale"],0],["Who is an entrepreneur?",["Someone who organizes a venture and takes business risks","Only a government employee","A person who never makes decisions"],0],["What is market research used for?",["Understanding customers and competitors","Choosing a logo only","Avoiding customer feedback"],0]],
+humss:[["What is active listening?",["Paying attention and clarifying meaning","Interrupting constantly","Ignoring the speaker"],0],["What should you do when using a source?",["Cite the source","Hide the source","Copy without attribution"],0],["What is a social institution?",["An organized structure meeting social needs","A type of calculator","A weather pattern"],0],["How can you check an online claim?",["Compare credible sources and evidence","Trust every headline","Only count shares"],0],["What helps a formal message?",["Clear purpose and respectful tone","Unclear wording","No greeting or context"],0]],
+stem:[["What is a hypothesis?",["A testable proposed explanation","A final answer that cannot change","A random measurement"],0],["What does a graph help show?",["Relationships and patterns in data","Only spelling errors","The author's age"],0],["What is matter?",["Something with mass that occupies space","Only sunlight","A mathematical operation"],0],["What is a variable in an experiment?",["A factor that can change","A fixed conclusion","A bibliography"],0],["Which is a useful scientific practice?",["Record observations accurately","Ignore conflicting evidence","Change results to fit a guess"],0]],
+he:[["What helps prevent cross-contamination?",["Separate raw and ready-to-eat foods","Use the same unwashed board for everything","Leave food uncovered"],0],["What is good customer service?",["Listen politely and respond helpfully","Ignore questions","Argue with every guest"],0],["Why wash hands before food preparation?",["To reduce transfer of germs","To change food color","To replace cleaning tools"],0],["What is responsible tourism?",["Respecting local communities and the environment","Leaving litter at destinations","Ignoring local customs"],0],["What is workplace professionalism?",["Punctuality, respect, and responsibility","Missing agreed schedules","Sharing private customer information"],0]]
+};
+function kindFor(q){return q.kind||"humss"}
+function quizCard(q){var score=data.scores[pkey(q)];return'<div class="item"><h3>'+esc(q.title)+'</h3><p><strong>Subject:</strong> '+esc(q.subject)+'</p><p>'+esc(q.description)+'</p>'+(score?'<p class="status done">Latest score: '+score.score+'/'+score.total+'</p>':'')+'<button class="btn blue" onclick="openQuiz(\''+esc(q.id)+'\')">Open quiz</button><div id="quiz_'+esc(q.id)+'"></div></div>'}
+function openQuiz(id){var q=data.quizzes.find(function(x){return x.id===id});if(!q)return;var qs=bank[kindFor(q)]||bank.humss;$("quiz_"+id).innerHTML='<form data-quiz="'+esc(id)+'">'+qs.map(function(x,i){return'<div class="question"><strong>'+(i+1)+'. '+esc(x[0])+'</strong>'+x[1].map(function(a,j){return'<label><input type="radio" name="q'+i+'" value="'+j+'" required> '+esc(a)+'</label>'}).join("")+'</div>'}).join("")+'<button class="btn" type="submit">Submit quiz</button></form>'}
+$("view").addEventListener("submit",function(e){var f=e.target;if(f.hasAttribute("data-quiz")){e.preventDefault();var q=data.quizzes.find(function(x){return x.id===f.getAttribute("data-quiz")});var qs=bank[kindFor(q)]||bank.humss,score=0;qs.forEach(function(x,i){var a=f.querySelector('input[name="q'+i+'"]:checked');if(a&&Number(a.value)===x[2])score++});data.scores[pkey(q)]={score:score,total:qs.length};if(score===qs.length)data.progress[pkey(q)]=true;save();alert("Quiz submitted! Score: "+score+"/"+qs.length+" ("+Math.round(score/qs.length*100)+"%).");render("quizzes");return}
+if(f.id==="manageForm"){e.preventDefault();addContent(f.getAttribute("data-key"))}});
+function manager(key,title){var isLesson=key==="lessons",isNotice=key==="announcements",isQuiz=key==="quizzes";return'<section class="tab active"><h2>Manage '+title+'</h2><form id="manageForm" data-key="'+key+'" class="formbox"><h3>Add new '+title.replace(/s$/,"")+'</h3><label>Title</label><input id="newTitle" required maxlength="120"><div '+(isNotice?'class="hidden"':'')+'><label>Subject</label><input id="newSubject" maxlength="100"></div>'+(isLesson?'<label>Strand</label><select id="newStrand"><option>General</option><option>ABM</option><option>HUMSS</option><option>STEM</option><option>GAS</option><option>ICT</option><option>HE</option><option>Tourism</option><option>Other</option></select>':'')+(isQuiz?'<label>Question set</label><select id="newKind"><option value="ict">ICT Basics</option><option value="abm">Business / ABM</option><option value="humss">Humanities / Research</option><option value="stem">Science / STEM</option><option value="he">Hospitality / Tourism</option></select><small>Quiz titles use one of the built-in five-question sets.</small>':'')+'<label>Description / lesson content / instructions</label><textarea id="newDescription" required maxlength="3000"></textarea>'+(key==="assignments"?'<label>Due date</label><input id="newDue" type="date">':'')+(isNotice?'<label>Post date</label><input id="newDate" type="date" value="'+new Date().toISOString().slice(0,10)+'">':'')+'<button class="btn" type="submit">＋ Add content</button></form><h3>Current content ('+data[key].length+')</h3>'+(data[key].length?data[key].map(function(x){return'<div class="item"><h3>'+esc(x.title)+'</h3>'+(x.strand?'<p>Strand: '+esc(x.strand)+'</p>':'')+(x.subject?'<p>Subject: '+esc(x.subject)+'</p>':'')+'<p>'+esc(x.description)+'</p><button type="button" class="btn red" data-delete="'+key+'" data-id="'+esc(x.id)+'">Remove</button></div>'}).join(""):"<p>No items yet.</p>")+'</section>'}
+function addContent(key){var title=$("newTitle").value.trim(),description=$("newDescription").value.trim();if(!title||!description){alert("Please enter a title and description.");return}var x={id:"x"+Date.now(),title:title,description:description};if(key!=="announcements")x.subject=$("newSubject").value.trim();if(key==="lessons")x.strand=$("newStrand").value;if(key==="quizzes")x.kind=$("newKind").value;if(key==="assignments")x.due=$("newDue").value;if(key==="announcements")x.date=$("newDate").value;data[key].push(x);save();render(tab)}
+$("view").addEventListener("click",function(e){var b=e.target.closest("[data-delete]");if(!b)return;var key=b.getAttribute("data-delete"),id=b.getAttribute("data-id"),x=data[key].find(function(a){return a.id===id});if(x&&confirm('Remove "'+x.title+'"?')){data[key]=data[key].filter(function(a){return a.id!==id});save();render(tab)}});
+steps(1);
+})();
 </script>
-
-</body>
-</html>
+</body></html>
